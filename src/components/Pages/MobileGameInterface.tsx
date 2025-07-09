@@ -538,75 +538,75 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
           ? 'bg-slate-900/50 border-slate-800' 
           : 'bg-emerald-50/50 border-emerald-200/50'
       }`}>
-        <div className="grid grid-cols-4 gap-1 text-xs">
+        <div className="grid grid-cols-4 gap-1">
           {/* Energy */}
           <div className="text-center">
-            <div className={`text-[10px] font-medium mb-1 transition-colors duration-300 ${
+            <div className={`text-[9px] font-medium mb-0.5 transition-colors duration-300 ${
               isDark ? 'text-white' : 'text-emerald-900'
             }`}>⚡ Energia</div>
-            <div className={`rounded-full h-1.5 transition-colors duration-300 ${
+            <div className={`rounded-full h-1 transition-colors duration-300 ${
               isDark ? 'bg-slate-800' : 'bg-emerald-200/50'
             }`}>
               <div
-                className="bg-yellow-500 h-1.5 rounded-full transition-all duration-300"
+                className="bg-yellow-500 h-1 rounded-full transition-all duration-300"
                 style={{ width: `${gameState.energy}%` }}
               />
             </div>
-            <div className={`text-[9px] mt-0.5 transition-colors duration-300 ${
+            <div className={`text-[8px] mt-0.5 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-emerald-700'
             }`}>{Math.round(gameState.energy)}%</div>
           </div>
 
           {/* Social */}
           <div className="text-center">
-            <div className={`text-[10px] font-medium mb-1 transition-colors duration-300 ${
+            <div className={`text-[9px] font-medium mb-0.5 transition-colors duration-300 ${
               isDark ? 'text-white' : 'text-emerald-900'
             }`}>👥 Social</div>
-            <div className={`rounded-full h-1.5 transition-colors duration-300 ${
+            <div className={`rounded-full h-1 transition-colors duration-300 ${
               isDark ? 'bg-slate-800' : 'bg-emerald-200/50'
             }`}>
               <div
-                className="bg-blue-500 h-1.5 rounded-full transition-all duration-300"
+                className="bg-blue-500 h-1 rounded-full transition-all duration-300"
                 style={{ width: `${gameState.social}%` }}
               />
             </div>
-            <div className={`text-[9px] mt-0.5 transition-colors duration-300 ${
+            <div className={`text-[8px] mt-0.5 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-emerald-700'
             }`}>{Math.round(gameState.social)}%</div>
           </div>
 
           {/* Health */}
           <div className="text-center">
-            <div className={`text-[10px] font-medium mb-1 transition-colors duration-300 ${
+            <div className={`text-[9px] font-medium mb-0.5 transition-colors duration-300 ${
               isDark ? 'text-white' : 'text-emerald-900'
             }`}>❤️ Saúde</div>
-            <div className={`rounded-full h-1.5 transition-colors duration-300 ${
+            <div className={`rounded-full h-1 transition-colors duration-300 ${
               isDark ? 'bg-slate-800' : 'bg-emerald-200/50'
             }`}>
               <div
-                className="bg-red-500 h-1.5 rounded-full transition-all duration-300"
+                className="bg-red-500 h-1 rounded-full transition-all duration-300"
                 style={{ width: `${gameState.health}%` }}
               />
             </div>
-            <div className={`text-[9px] mt-0.5 transition-colors duration-300 ${
+            <div className={`text-[8px] mt-0.5 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-emerald-700'
             }`}>{Math.round(gameState.health)}%</div>
           </div>
 
           {/* Productivity */}
           <div className="text-center">
-            <div className={`text-[10px] font-medium mb-1 transition-colors duration-300 ${
+            <div className={`text-[9px] font-medium mb-0.5 transition-colors duration-300 ${
               isDark ? 'text-white' : 'text-emerald-900'
             }`}>📈 Produção</div>
-            <div className={`rounded-full h-1.5 transition-colors duration-300 ${
+            <div className={`rounded-full h-1 transition-colors duration-300 ${
               isDark ? 'bg-slate-800' : 'bg-emerald-200/50'
             }`}>
               <div
-                className="bg-purple-500 h-1.5 rounded-full transition-all duration-300"
+                className="bg-purple-500 h-1 rounded-full transition-all duration-300"
                 style={{ width: `${gameState.productivity}%` }}
               />
             </div>
-            <div className={`text-[9px] mt-0.5 transition-colors duration-300 ${
+            <div className={`text-[8px] mt-0.5 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-emerald-700'
             }`}>{Math.round(gameState.productivity)}%</div>
           </div>
