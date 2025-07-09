@@ -14,7 +14,7 @@ interface GameState {
   energy: number;
   social: number;
   health: number;
-  sleepQuality: number;
+  productivity: number;
   currentRoom: 'bedroom' | 'living' | 'kitchen' | 'gym' | 'bathroom';
   isPlaying: boolean;
   gameSpeed: number;
@@ -41,7 +41,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
     energy: 80,
     social: 70,
     health: 85,
-    sleepQuality: 60,
+    productivity: 75,
     currentRoom: 'bedroom',
     isPlaying: false,
     gameSpeed: 1,
@@ -87,6 +87,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
           let energyChange = 0;
           let socialChange = 0;
           let healthChange = 0;
+          let productivityChange = 0;
 
           // Ciclo natural de energia baseado na hora
           if (newHour >= 6 && newHour <= 12) {
@@ -103,6 +104,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
           const newEnergy = Math.max(0, Math.min(100, prev.energy + energyChange));
           const newSocial = Math.max(0, Math.min(100, prev.social + socialChange));
           const newHealth = Math.max(0, Math.min(100, prev.health + healthChange));
+          const newProductivity = Math.max(0, Math.min(100, prev.productivity + productivityChange));
 
           return {
             ...prev,
@@ -111,7 +113,8 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
             minute: newMinute,
             energy: newEnergy,
             social: newSocial,
-            health: newHealth
+            health: newHealth,
+            productivity: newProductivity
           };
         });
       }, 1000 / gameState.gameSpeed); // 1 segundo real
@@ -181,6 +184,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
       let energyChange = 0;
       let socialChange = 0;
       let healthChange = 0;
+      let productivityChange = 0;
       let newMood = prev.character.mood;
       let newActivity = prev.character.activity;
       let newAchievements = [...prev.achievements];
@@ -191,6 +195,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
         case 'sleep':
           energyChange = 30;
           healthChange = 10;
+          productivityChange = 25; // Dormir bem melhora muito a produtividade
           newMood = 'relaxed';
           newActivity = 'sleep';
           scoreIncrease = 20;
@@ -198,6 +203,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
         case 'eat':
           energyChange = 15;
           socialChange = 5; // Comer pode ter um pequeno efeito social
+          productivityChange = 10; // Alimentar-se bem melhora produtividade
           newMood = 'happy';
           newActivity = 'eat';
           break;
@@ -205,23 +211,27 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
           energyChange = -10;
           healthChange = 20;
           socialChange = 10; // Exercitar-se pode melhorar confiança social
+          productivityChange = 15; // Exercício melhora foco e produtividade
           newMood = 'energetic';
           newActivity = 'exercise';
           scoreIncrease = 25;
           break;
         case 'relax':
           socialChange = 15; // Relaxar pode melhorar disposição social
+          productivityChange = -5; // Relaxar demais pode diminuir produtividade
           newMood = 'relaxed';
           newActivity = 'relax';
           break;
         case 'drinkWater':
           healthChange = 5;
           energyChange = 5;
+          productivityChange = 5; // Hidratação melhora concentração
           newActivity = 'drinkWater';
           break;
         case 'shower':
           socialChange = 15; // Tomar banho melhora apresentação social
           healthChange = 5;
+          productivityChange = 10; // Higiene pessoal melhora disposição para trabalhar
           newMood = 'happy';
           newActivity = 'shower';
           break;
@@ -243,6 +253,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
         energy: Math.max(0, Math.min(100, prev.energy + energyChange)),
         social: Math.max(0, Math.min(100, prev.social + socialChange)),
         health: Math.max(0, Math.min(100, prev.health + healthChange)),
+        productivity: Math.max(0, Math.min(100, prev.productivity + productivityChange)),
         completedActions: prev.completedActions.includes(actionKey) 
           ? prev.completedActions 
           : [...prev.completedActions, actionKey],
@@ -527,7 +538,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
           ? 'bg-slate-900/50 border-slate-800' 
           : 'bg-emerald-50/50 border-emerald-200/50'
       }`}>
-        <div className="grid grid-cols-3 gap-2 text-xs">
+        <div className="grid grid-cols-4 gap-2 text-xs">
           {/* Energy */}
           <div className="text-center">
             <div className={`text-xs font-medium mb-1 transition-colors duration-300 ${
@@ -546,7 +557,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
             }`}>{Math.round(gameState.energy)}%</div>
           </div>
 
-          {/* Happiness */}
+          {/* Social */}
           <div className="text-center">
             <div className={`text-xs font-medium mb-1 transition-colors duration-300 ${
               isDark ? 'text-white' : 'text-emerald-900'
@@ -580,6 +591,24 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
             <div className={`text-xs mt-1 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-emerald-700'
             }`}>{Math.round(gameState.health)}%</div>
+          </div>
+
+          {/* Productivity */}
+          <div className="text-center">
+            <div className={`text-xs font-medium mb-1 transition-colors duration-300 ${
+              isDark ? 'text-white' : 'text-emerald-900'
+            }`}>📈 Produtividade</div>
+            <div className={`rounded-full h-2 transition-colors duration-300 ${
+              isDark ? 'bg-slate-800' : 'bg-emerald-200/50'
+            }`}>
+              <div
+                className="bg-purple-500 h-2 rounded-full transition-all duration-300"
+                style={{ width: `${gameState.productivity}%` }}
+              />
+            </div>
+            <div className={`text-xs mt-1 transition-colors duration-300 ${
+              isDark ? 'text-slate-400' : 'text-emerald-700'
+            }`}>{Math.round(gameState.productivity)}%</div>
           </div>
         </div>
       </div>
