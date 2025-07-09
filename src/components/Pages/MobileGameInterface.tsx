@@ -12,7 +12,7 @@ interface GameState {
   hour: number;
   minute: number;
   energy: number;
-  happiness: number;
+  social: number;
   health: number;
   sleepQuality: number;
   currentRoom: 'bedroom' | 'living' | 'kitchen' | 'gym' | 'bathroom';
@@ -39,7 +39,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
     hour: 7,
     minute: 0,
     energy: 80,
-    happiness: 70,
+    social: 70,
     health: 85,
     sleepQuality: 60,
     currentRoom: 'bedroom',
@@ -85,7 +85,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
 
           // Efeitos baseados no tempo
           let energyChange = 0;
-          let happinessChange = 0;
+          let socialChange = 0;
           let healthChange = 0;
 
           // Ciclo natural de energia baseado na hora
@@ -101,7 +101,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
 
           // Aplicar mudanças graduais
           const newEnergy = Math.max(0, Math.min(100, prev.energy + energyChange));
-          const newHappiness = Math.max(0, Math.min(100, prev.happiness + happinessChange));
+          const newSocial = Math.max(0, Math.min(100, prev.social + socialChange));
           const newHealth = Math.max(0, Math.min(100, prev.health + healthChange));
 
           return {
@@ -110,7 +110,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
             hour: newHour,
             minute: newMinute,
             energy: newEnergy,
-            happiness: newHappiness,
+            social: newSocial,
             health: newHealth
           };
         });
@@ -179,7 +179,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
     
     setGameState(prev => {
       let energyChange = 0;
-      let happinessChange = 0;
+      let socialChange = 0;
       let healthChange = 0;
       let newMood = prev.character.mood;
       let newActivity = prev.character.activity;
@@ -197,20 +197,20 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
           break;
         case 'eat':
           energyChange = 15;
-          happinessChange = 10;
+          socialChange = 5; // Comer pode ter um pequeno efeito social
           newMood = 'happy';
           newActivity = 'eat';
           break;
         case 'exercise':
           energyChange = -10;
           healthChange = 20;
-          happinessChange = 15;
+          socialChange = 10; // Exercitar-se pode melhorar confiança social
           newMood = 'energetic';
           newActivity = 'exercise';
           scoreIncrease = 25;
           break;
         case 'relax':
-          happinessChange = 20;
+          socialChange = 15; // Relaxar pode melhorar disposição social
           newMood = 'relaxed';
           newActivity = 'relax';
           break;
@@ -220,7 +220,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
           newActivity = 'drinkWater';
           break;
         case 'shower':
-          happinessChange = 10;
+          socialChange = 15; // Tomar banho melhora apresentação social
           healthChange = 5;
           newMood = 'happy';
           newActivity = 'shower';
@@ -239,9 +239,9 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
       }
 
       return {
-        ...prev,
+        social: 70,
         energy: Math.max(0, Math.min(100, prev.energy + energyChange)),
-        happiness: Math.max(0, Math.min(100, prev.happiness + happinessChange)),
+        social: Math.max(0, Math.min(100, prev.social + socialChange)),
         health: Math.max(0, Math.min(100, prev.health + healthChange)),
         completedActions: prev.completedActions.includes(actionKey) 
           ? prev.completedActions 
@@ -550,18 +550,18 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
           <div className="text-center">
             <div className={`text-xs font-medium mb-1 transition-colors duration-300 ${
               isDark ? 'text-white' : 'text-emerald-900'
-            }`}>😊 Humor</div>
+            }`}>👥 Social</div>
             <div className={`rounded-full h-2 transition-colors duration-300 ${
               isDark ? 'bg-slate-800' : 'bg-emerald-200/50'
             }`}>
               <div
-                className="bg-pink-500 h-2 rounded-full transition-all duration-300"
-                style={{ width: `${gameState.happiness}%` }}
+                className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                style={{ width: `${gameState.social}%` }}
               />
             </div>
             <div className={`text-xs mt-1 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-emerald-700'
-            }`}>{Math.round(gameState.happiness)}%</div>
+            }`}>{Math.round(gameState.social)}%</div>
           </div>
 
           {/* Health */}
