@@ -552,7 +552,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
                 style={{ width: `${gameState.energy}%` }}
               />
             </div>
-            <div className={`text-[8px] mt-0.5 transition-colors duration-300 ${
+            <div className={`text-[9px] mt-0.5 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-emerald-700'
             }`}>{Math.round(gameState.energy)}%</div>
           </div>
@@ -570,7 +570,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
                 style={{ width: `${gameState.social}%` }}
               />
             </div>
-            <div className={`text-[8px] mt-0.5 transition-colors duration-300 ${
+            <div className={`text-[9px] mt-0.5 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-emerald-700'
             }`}>{Math.round(gameState.social)}%</div>
           </div>
@@ -588,7 +588,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
                 style={{ width: `${gameState.health}%` }}
               />
             </div>
-            <div className={`text-[8px] mt-0.5 transition-colors duration-300 ${
+            <div className={`text-[9px] mt-0.5 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-emerald-700'
             }`}>{Math.round(gameState.health)}%</div>
           </div>
@@ -606,7 +606,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
                 style={{ width: `${gameState.productivity}%` }}
               />
             </div>
-            <div className={`text-[8px] mt-0.5 transition-colors duration-300 ${
+            <div className={`text-[9px] mt-0.5 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-emerald-700'
             }`}>{Math.round(gameState.productivity)}%</div>
           </div>
