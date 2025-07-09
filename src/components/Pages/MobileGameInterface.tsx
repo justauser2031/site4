@@ -541,7 +541,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
         <div className="grid grid-cols-4 gap-1">
           {/* Energy */}
           <div className="text-center">
-            <div className={`text-[9px] font-medium mb-0.5 transition-colors duration-300 ${
+            <div className={`text-[10px] font-medium mb-0.5 transition-colors duration-300 ${
               isDark ? 'text-white' : 'text-emerald-900'
             }`}>⚡ Energia</div>
             <div className={`rounded-full h-1 transition-colors duration-300 ${
@@ -559,7 +559,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
 
           {/* Social */}
           <div className="text-center">
-            <div className={`text-[9px] font-medium mb-0.5 transition-colors duration-300 ${
+            <div className={`text-[10px] font-medium mb-0.5 transition-colors duration-300 ${
               isDark ? 'text-white' : 'text-emerald-900'
             }`}>👥 Social</div>
             <div className={`rounded-full h-1 transition-colors duration-300 ${
@@ -577,7 +577,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
 
           {/* Health */}
           <div className="text-center">
-            <div className={`text-[9px] font-medium mb-0.5 transition-colors duration-300 ${
+            <div className={`text-[10px] font-medium mb-0.5 transition-colors duration-300 ${
               isDark ? 'text-white' : 'text-emerald-900'
             }`}>❤️ Saúde</div>
             <div className={`rounded-full h-1 transition-colors duration-300 ${
@@ -595,7 +595,7 @@ const MobileGameInterface: React.FC<MobileGameInterfaceProps> = ({ onBack }) => 
 
           {/* Productivity */}
           <div className="text-center">
-            <div className={`text-[9px] font-medium mb-0.5 transition-colors duration-300 ${
+            <div className={`text-[10px] font-medium mb-0.5 transition-colors duration-300 ${
               isDark ? 'text-white' : 'text-emerald-900'
             }`}>📈 Produção</div>
             <div className={`rounded-full h-1 transition-colors duration-300 ${
